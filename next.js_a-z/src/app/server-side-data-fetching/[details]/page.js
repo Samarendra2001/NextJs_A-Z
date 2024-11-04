@@ -1,30 +1,23 @@
-
-
-const fetchUserDetails = async(currentUserId)=>{
-    console.log(currentUserId);
-    try{
-        const apiResponse = await fetch(`https://dummyjson.com/users/${currentUserId}`)
-    const result = await apiResponse.json();
-    return result;
-    }catch(e){
-        throw new Error(e);
-    }
-    
+const fetchUserDetails = async(id)=>{
+   try{
+    const response = await fetch(`https://dummyjson.com/users/${id}`);
+    const data = await response.json();
+    console.log(data);
+    return data;
+   }catch(err){
+    throw new Error(err);
+   }
 }
 
-export default async function UserDetails({params}){
-    console.log(params)
+export default async function userDetails({params}){
+    console.log(params);
     const userDetails = await fetchUserDetails(params.details);
-    return(
-     <div>
-        <h1 className="mt-5">This is User details Page</h1>
-        <p>{userDetails?.firstName} {userDetails?.lastName}</p>
-        <p>{userDetails?.age}</p>
-        <p>{userDetails?.email}</p>
-        <p>{userDetails?.phone}</p>
-        <p>{userDetails?.birthdate}</p>
-        <p>{userDetails?.bloodGroup}</p>
-     </div>
-    )
-    
+    return(<div>
+        <h1>This is User Details page</h1>
+        <p>{userDetails?.firstName} {userDetails?.lastName}
+            <p>{userDetails?.age}</p>
+            <p>{userDetails?.phone}</p>
+            <p>{userDetails?.email}</p>
+        </p>
+    </div>)
 }

@@ -16,8 +16,8 @@ export default function UsingSwrhook(){
             Loading users ! Please Wait
         </h3>)
     return <div>
-        <h1>This is data fegtching using Swr hook.</h1>
-        {data && data?.users && data?.users.length ? 
+        <h1>This is data fetching using Swr hook.</h1>
+        {data && data?.users && data?.users.length>0 ? 
             data?.users.map(user=>(<li key={user.id}>{user.firstName}</li>))
             : null }
     </div>
